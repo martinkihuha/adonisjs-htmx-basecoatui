@@ -1,0 +1,131 @@
+<fieldset class="fieldset max-w-md">
+  <div role="group" class="field">
+    <div class="inline-flex items-center gap-1">
+      @svg('mdi:asterisk', { class: 'text-destructive text-xs' })
+      <label for="firstName">First Name</label>
+    </div>
+    <input
+      name="firstName"
+      id="firstName"
+      type="text"
+      placeholder="First Name"
+      autocomplete=""
+      value="{{ old('firstName') || contact?.firstName || '' }}"
+      class="border px-2 py-1"
+    />
+
+    @inputError('firstName')
+      @each(message in $messages)
+        <p class="text-red-500 text-xs">
+          {{ message }}
+        </p>
+      @end
+    @end
+  </div>
+
+  <div role="group" class="field">
+    <div class="inline-flex items-center gap-1">
+      @svg('mdi:asterisk', { class: 'text-destructive text-xs' })
+      <label for="lastName">Last Name</label>
+    </div>
+    <input
+      name="lastName"
+      id="lastName"
+      type="text"
+      placeholder="Last Name"
+      autocomplete=""
+      value="{{ old('lastName') || contact?.lastName || '' }}"
+      class="border px-2 py-1"
+    />
+
+    @inputError('lastName')
+      @each(message in $messages)
+        <p class="text-red-500 text-xs">
+          {{ message }}
+        </p>
+      @end
+    @end
+  </div>
+
+  <div role="group" class="field">
+    <div class="inline-flex items-center gap-1">
+      @svg('mdi:asterisk', { class: 'text-destructive text-xs' })
+      <label for="phone">Phone</label>
+    </div>
+    <input
+      name="phone"
+      id="phone"
+      type="tel"
+      placeholder="Phone"
+      autocomplete="tel-national"
+      value="{{ old('phone') || contact?.phone || '' }}"
+      class="border px-2 py-1"
+    />
+
+    @inputError('phone')
+      @each(message in $messages)
+        <p class="text-red-500 text-xs">
+          {{ message }}
+        </p>
+      @end
+    @end
+  </div>
+
+  <div role="group" class="field">
+    <div class="inline-flex items-center gap-1">
+      @svg('mdi:asterisk', { class: 'text-destructive text-xs' })
+      <label for="email">Email</label>
+    </div>
+    <input
+      name="email"
+      id="email"
+      type="email"
+      placeholder="Email"
+      autocomplete="email"
+      value="{{ old('email') || contact?.email || '' }}"
+      class="border px-2 py-1"
+    />
+
+    @inputError('email')
+      @each(message in $messages)
+        <p class="text-red-500 text-xs">
+          {{ message }}
+        </p>
+      @end
+    @end
+  </div>
+
+  <div role="group" class="field">
+    <div class="inline-flex items-center gap-1">
+      @svg('mdi:asterisk', { class: 'text-destructive text-xs' })
+      <label for="address">Address</label>
+    </div>
+    <input
+      name="address"
+      id="address"
+      type="text"
+      placeholder="Address"
+      autocomplete="address"
+      value="{{ old('address') || contact?.address || '' }}"
+      class="border px-2 py-1"
+    />
+
+    @inputError('address')
+      @each(message in $messages)
+        <p class="text-red-500 text-xs">
+          {{ message }}
+        </p>
+      @end
+    @end
+  </div>
+
+  <div class="flex items-center gap-2">
+    <button type="submit" class="btn rounded">
+      Save
+    </button>
+
+    <a href="/contacts" class="btn-outline rounded">
+      Cancel
+    </a>
+  </div>
+</fieldset>

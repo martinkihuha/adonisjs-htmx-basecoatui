@@ -1,0 +1,45 @@
+<div class="flex items-center justify-between gap-2 text-sm sm:pl-2 2xl:text-md">
+  <div class="hidden sm:block">
+    {{ meta?.total > 0 ? (meta?.currentPage - 1) * meta?.perPage + 1 : meta?.total }} -
+    {{
+      meta?.currentPage * meta?.perPage <= meta?.total
+        ? meta?.currentPage * meta?.perPage
+        : meta?.total
+    }}
+    of {{ meta?.total }}
+  </div>
+
+  <div class="flex items-center">
+    <button
+      type="button"
+      disabled="{{ !meta?.previousPageUrl }}"
+      class="{{ !meta?.previousPageUrl ? 'cursor-not-allowed opacity-30' : 'cursor-pointer' }} flex items-center gap-2 p-2 border border-r-0 rounded-l h-9 border-muted-foreground/50 sm:px-4"
+    >
+      @svg('heroicons:chevron-left')
+      <span>Prev</span>
+    </button>
+
+    <select class="select rounded-none">
+      <option value="{{ meta?.currentPage }}">Page {{ meta?.currentPage }} of {{ meta?.lastPage }}</option>
+    </select>
+
+    <button
+      type="button"
+      disabled="{{ !meta?.nextPageUrl }}"
+      class="{{ !meta?.nextPageUrl ? 'cursor-not-allowed opacity-30' : 'cursor-pointer' }} flex items-center gap-2 p-2 border border-l-0 rounded-r h-9 border-muted-foreground/50 sm:px-4"
+    >
+      <span>Next</span>
+      @svg('heroicons:chevron-right')
+    </button>
+  </div>
+
+  <div class="flex items-center gap-1 text-xs! 2xl:text-sm!">
+    <span class="flex-none hidden sm:block">Items per page:</span>
+
+    <select class="select">
+      @each(item in [10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
+        <option value="{{ item }}">{{ item }}</option>
+      @end
+    </select>
+  </div>
+</div>

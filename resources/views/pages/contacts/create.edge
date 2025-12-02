@@ -1,0 +1,12 @@
+@layout.app({ title })
+  @slot('meta')
+    <meta name="description" content="A form to create a new contact" />
+  @endslot
+  
+  @slot('main')
+    <form action="/contacts" method="post">
+      {{ csrfField() }}
+      @include('pages/contacts/form')
+    </form>
+  @endslot
+@end

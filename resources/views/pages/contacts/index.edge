@@ -1,0 +1,102 @@
+@layout.app({ title })
+  @slot('meta')
+    <meta name="description" content="A contacts listing page" />
+  @endslot
+  
+  @slot('main')
+    <div class="flex items-center gap-4">
+      <form action="/contacts" method="get" class="relative inline-flex grow items-center gap-0">
+        {{ csrfField() }}
+        <label for="search" class="sr-only">Search</label>
+        <input
+          id="search"
+          type="search"
+          name="q"
+          placeholder="Search contacts..."
+          value="{{ request.input('q') || '' }}"
+          class="h-9 w-full border rounded-s p-1 pl-9 placeholder:text-muted-foreground/50"
+          hx-get="/contacts"
+          hx-trigger="search, keyup delay:500ms changed"
+          hx-target="body"
+        />
+        @svg('heroicons:magnifying-glass', { class: 'absolute left-3 top-2.5 text-muted-foreground/50 size-4' })
+        <button type="submit" class="btn rounded-s-none rounded-e">
+          @svg('heroicons:magnifying-glass', { class: 'size-4' })
+          Search
+        </button>
+      </form>
+
+      <a href="/contacts/create" class="btn rounded">
+        @svg('heroicons:plus', { class: 'size-4' })
+        New Contact
+      </a>
+    </div>
+
+    <table class="table border-b">
+      <thead>
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+            Phone
+          </th>
+          <th>
+            Email
+          </th>
+          <th>
+            Address
+          </th>
+          <th>
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @each ((contact, c) in contacts.data)
+          <tr>
+            <td>
+              <a href="/contacts/{{ contact.id }}" class="btn-link p-0">
+                {{ contact.firstName }} {{ contact.lastName }}
+              </a>
+            </td>
+            <td>
+              {{ contact.phone }}
+            </td>
+            <td>
+              {{ contact.email }}
+            </td>
+            <td>
+              {{ contact.address }}
+            </td>
+            <td>
+              <a href="/contacts/{{ contact.id }}/edit" class="btn-link">
+                Edit
+              </a>
+            </td>
+            <td>
+              <form action="/contacts/{{ contact.id }}?_method=DELETE" method="post">
+                {{ csrfField() }}
+                <button
+                  type="submit"
+                  hx-delete="/contacts/{{ contact.id }}"
+                  hx-target="closest tr"
+                  hx-swap="outerHTML"
+                  hx-headers='{"x-delete-type": "row"}'
+                  hx-confirm="Are you sure you want to delete {{ contact.firstName }} {{ contact.lastName }}'s contact?"
+                  class="btn-link text-destructive"
+                >
+                  Delete
+                </button>
+              </form>
+            </td>
+          </tr>
+        @end
+      </tbody>
+    </table>
+
+    @!pagination({meta:contacts.meta})
+  @endslot
+@end
