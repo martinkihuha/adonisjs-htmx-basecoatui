@@ -67,7 +67,7 @@ export default class ContactsController {
 
     return view.render('pages/contacts/edit', {
       contact,
-      title: `Edit ${contact.firstName} ${contact.lastName}'s Contacts`,
+      title: 'Edit Contact',
     })
   }
 

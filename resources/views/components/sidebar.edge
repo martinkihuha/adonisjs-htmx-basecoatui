@@ -1,0 +1,21 @@
+@each(item in results)
+  <li>
+    <details id="submenu-content-{{ item.id }}">
+      <summary aria-controls="submenu-content-{{ item.id }}-content">
+        @svg(`${item.icon}`, { class: 'size-5' })
+        {{ item.title }}
+      </summary>
+
+      <ul id="submenu-content-{{ item.id }}-content">
+        @each(subItem in item.subNavItems)
+          <li>
+            <a href="{{ subItem.url }}">
+              @svg(`${subItem.icon}`, { class: 'size-5' })
+              <span>{{ subItem.title }}</span>
+            </a>
+          </li>
+        @end
+      </ul>
+    </details>
+  </li>
+@end

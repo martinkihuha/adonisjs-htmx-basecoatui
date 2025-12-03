@@ -1,0 +1,30 @@
+<form
+  action="{{ searchUrl }}"
+  method="get"
+  class="relative inline-flex w-full items-center gap-0 sm:w-1/2"
+>
+  {{ csrfField() }}
+  <label for="search" class="sr-only">Search</label>
+  <input
+    id="search"
+    type="search"
+    name="q"
+    placeholder="Search {{ searchPlaceholder }}..."
+    value="{{ request.input('q') || '' }}"
+    class="h-9 w-full bg-card rounded-s rounded-e-none p-1 pl-9 placeholder:text-muted-foreground/50"
+    hx-get="{{ searchUrl }}"
+    hx-trigger="input delay:500ms changed, search"
+    hx-target="body"
+    hx-push-url="true"
+    hx-indicator="#spinner"
+  />
+  @svg('heroicons:magnifying-glass', { class: 'absolute left-3 top-2.5 text-muted-foreground/50 size-4' })
+  @svg('svg-spinners:ring-resize', { id: 'spinner', class: 'htmx-indicator absolute right-28 top-2.5 text-muted-foreground size-4' })
+  <button
+    type="submit"
+    class="btn rounded-s-none rounded-e transition-all duration-300 hover:ring-2 hover:ring-offset-2 hover:ring-primary dark:hover:ring-offset-black"
+  >
+    {{--  @svg('heroicons:magnifying-glass', { class: 'size-4' })  --}}
+    Search
+  </button>
+</form>
