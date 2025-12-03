@@ -1,4 +1,4 @@
-<fieldset class="fieldset max-w-md">
+<fieldset class="fieldset max-w-md card rounded p-4">
   <div role="group" class="field">
     <div class="inline-flex items-center gap-1">
       @svg('mdi:asterisk', { class: 'text-destructive text-xs' })
@@ -119,18 +119,20 @@
     @end
   </div>
 
-  <div class="flex items-center gap-2">
+  <div class="flex items-center justify-center gap-2">
     <button
       type="submit"
       class="btn rounded px-8 transition-all duration-300 hover:ring-2 hover:ring-offset-2 hover:ring-primary dark:hover:ring-offset-black"
     >
+      @svg('lucide:save', { class: 'size-4' })
       Save
     </button>
 
     <a
       href="/contacts"
-      class="btn-outline rounded px-6 transition-all duration-300 hover:ring-2 hover:ring-offset-2 hover:ring-secondary dark:hover:ring-offset-black"
+      class="btn-outline bg-secondary-foreground text-secondary rounded px-6 transition-all duration-300 hover:ring-2 hover:ring-offset-2 hover:ring-secondary-foreground dark:hover:ring-offset-black"
     >
+      @svg('heroicons:no-symbol-16-solid', { class: 'size-4' })
       Cancel
     </a>
   </div>

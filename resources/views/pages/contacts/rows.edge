@@ -1,6 +1,9 @@
 <tr>
   <td class="pl-3">
-    <a href="/contacts/{{ contact.id }}" class="btn-link p-0">
+    <a
+      href="/contacts/{{ contact.id }}"
+      class="btn-link underline p-0 transition-all duration-300 hover:no-underline"
+    >
       {{ contact.firstName }} {{ contact.lastName }}
     </a>
   </td>
@@ -14,24 +17,28 @@
     {{ contact.address }}
   </td>
   <td>
-    <a href="/contacts/{{ contact.id }}/edit" class="btn-link">
-      Edit
-    </a>
-  </td>
-  <td>
-    <form action="/contacts/{{ contact.id }}?_method=DELETE" method="post">
-      {{ csrfField() }}
-      <button
-        type="submit"
-        hx-delete="/contacts/{{ contact.id }}"
-        hx-target="closest tr"
-        hx-swap="outerHTML"
-        hx-headers='{"x-delete-type": "row"}'
-        hx-confirm="Are you sure you want to delete {{ contact.firstName }} {{ contact.lastName }}'s contact?"
-        class="btn-link text-destructive"
+    <div class="flex items-center justify-center">
+      <a
+        href="/contacts/{{ contact.id }}/edit"
+        class="btn-link underline transition-all duration-300 hover:no-underline"
       >
-        Delete
-      </button>
-    </form>
+        Edit
+      </a>
+
+      <form action="/contacts/{{ contact.id }}?_method=DELETE" method="post">
+        {{ csrfField() }}
+        <button
+          type="submit"
+          hx-delete="/contacts/{{ contact.id }}"
+          hx-target="closest tr"
+          hx-swap="outerHTML"
+          hx-headers='{"x-delete-type": "row"}'
+          hx-confirm="Are you sure you want to delete {{ contact.firstName }} {{ contact.lastName }}'s contact?"
+          class="btn-link text-destructive underline transition-all duration-300 hover:no-underline"
+        >
+          Delete
+        </button>
+      </form>
+    </div>
   </td>
 </tr>
