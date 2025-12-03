@@ -31,11 +31,17 @@
     </table>
 
     <div class="flex items-center gap-2">
-      <a href="/contacts" class="btn-outline rounded">
+      <a
+        href="/contacts"
+        class="btn-outline rounded px-6 transition-all duration-300 hover:ring-2 hover:ring-offset-2 hover:ring-secondary dark:hover:ring-offset-secondary"
+      >
         Back
       </a>
 
-      <a href="/contacts/{{ contact.id }}/edit" class="btn rounded">
+      <a
+        href="/contacts/{{ contact.id }}/edit"
+        class="btn rounded px-8 transition-all duration-300 hover:ring-2 hover:ring-offset-2 hover:ring-primary dark:hover:ring-offset-black"
+      >
         Edit
       </a>
 
@@ -44,7 +50,7 @@
         <button
           type="submit"
           onclick="return confirm(`Are you sure you want to delete {{ contact.firstName }} {{ contact.lastName }}'s contact?`)"
-          class="btn-destructive rounded"
+          class="btn-destructive rounded px-6 transition-all duration-300 hover:ring-2 hover:ring-offset-2 hover:ring-destructive dark:hover:ring-offset-black"
         >
           Delete
         </button>

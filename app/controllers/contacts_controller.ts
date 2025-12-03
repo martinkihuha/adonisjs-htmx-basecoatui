@@ -20,6 +20,7 @@ export default class ContactsController {
           .orWhereILike('lastName', `%${search}%`)
           .orWhereILike('phone', `%${search}%`)
           .orWhereILike('email', `%${search}%`)
+          .orWhereILike('address', `%${search}%`)
       )
       .paginate(page, limit)
 
