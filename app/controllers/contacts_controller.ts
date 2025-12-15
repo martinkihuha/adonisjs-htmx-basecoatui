@@ -27,14 +27,6 @@ export default class ContactsController {
     // Check if this is an HTMX request
     const isHtmxRequest = request.header('hx-request') === 'true'
 
-    // If HTMX request, return only the partial content
-    // if (isHtmxRequest) {
-    //   return view.render('pages/contacts/_content', {
-    //     contacts: contacts.toJSON(),
-    //     title: 'Contacts',
-    //   })
-    // }
-
     return view.render(`pages/contacts/${isHtmxRequest ? '_content' : 'index'}`, {
       contacts: contacts.toJSON(),
       title: 'Contacts',
@@ -70,14 +62,18 @@ export default class ContactsController {
    * Show individual record
    */
   async show({ params, request, view }: HttpContext) {
-    const contact = await Contact.findOrFail(params.id)
+    const contact = await Contact.query().whereNull('deletedAt').andWhere('id', params.id).first()
+
+    if (!contact) {
+      return view.render('pages/contacts/not-found', { title: 'Contact Not Found' })
+    }
 
     // Check if this is an HTMX request
     const isHtmxRequest = request.header('hx-request') === 'true'
 
     return view.render(`pages/contacts/${isHtmxRequest ? '_show' : 'show'}`, {
       contact,
-      title: `${contact.firstName} ${contact.lastName}`,
+      title: `${contact.firstName} ${contact.lastName}'s Details`,
     })
   }
 

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" class="h-full">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @if ($slots.meta)
+      {{{ await $slots.meta() }}}
+    @endif
+    
+    <title>
+      {{ title ? `${title} -` : '' }} Contacts App
+    </title>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+  </head>
+
+  <body class="w-screen min-h-screen font-sans">
+
+    <main class="h-screen overflow-hidden flex flex-col">
+
+      <div id="content" class="flex-1 overflow-auto bg-muted space-y-4 p-4">
+        {{{ await $slots.main() }}}
+      </div>
+    </main>
+  </body>
+
+</html>
