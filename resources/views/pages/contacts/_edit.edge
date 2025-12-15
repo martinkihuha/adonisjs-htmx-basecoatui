@@ -2,6 +2,10 @@
   {{ title ? `${title} -` : '' }} Contacts App
 </title>
 
+<h1 id="page-title" hx-swap-oob="true">
+  {{ title }}
+</h1>
+
 <form action="/contacts/{{ contact.id }}?_method=PUT" method="post">
   {{ csrfField() }}
   @include('pages/contacts/form')

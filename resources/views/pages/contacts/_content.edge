@@ -2,6 +2,10 @@
   {{ title ? `${title} -` : '' }} Contacts App
 </title>
 
+<h1 id="page-title" hx-swap-oob="true">
+  {{ title }}
+</h1>
+
 <div class="flex items-center justify-between gap-4">
   @!search({ searchUrl: '/contacts', searchPlaceholder: 'contacts' })
 
