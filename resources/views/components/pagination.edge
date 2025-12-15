@@ -19,7 +19,7 @@
       <span>Prev</span>
     </button>
 
-    <select class="select rounded-none" disabled="{{ meta?.lastPage < 2 }}">
+    <select class="select rounded-none" disabled="{{ meta?.lastPage < 2 }}" aria-label="Select page number">
       <option value="{{ meta?.currentPage }}">Page {{ meta?.currentPage }} of {{ meta?.lastPage }}</option>
     </select>
 
@@ -36,7 +36,7 @@
   <div class="flex items-center gap-1 text-xs! 2xl:text-sm!">
     <span class="flex-none hidden sm:block">Items per page:</span>
 
-    <select class="select" disabled="{{ meta?.lastPage < 2 }}">
+    <select aria-label="Select number of items" class="select" disabled="{{ meta?.lastPage < 2 }}">
       @each(item in [10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
         <option value="{{ item }}">{{ item }}</option>
       @end

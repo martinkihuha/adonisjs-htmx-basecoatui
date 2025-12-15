@@ -9,6 +9,7 @@
 
 import router from '@adonisjs/core/services/router'
 
+const HomeController = () => import('#controllers/home_controller')
 const ContactsController = () => import('#controllers/contacts_controller')
 const CountriesController = () => import('#controllers/countries_controller')
 const CountiesController = () => import('#controllers/counties_controller')
@@ -16,7 +17,8 @@ const GendersController = () => import('#controllers/genders_controller')
 const NavItemsController = () => import('#controllers/nav_items_controller')
 const TaxesController = () => import('#controllers/taxes_controller')
 
-router.on('/').redirect('/contacts')
+router.on('/').redirect('/dashboard')
+router.get('/dashboard', [HomeController, 'index'])
 router.resource('contacts', ContactsController)
 
 router

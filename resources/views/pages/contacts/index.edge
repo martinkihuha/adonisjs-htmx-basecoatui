@@ -4,47 +4,6 @@
   @endslot
   
   @slot('main')
-    <div class="flex items-center justify-between gap-4">
-      @!search({ searchUrl: '/contacts', searchPlaceholder: 'contacts' })
-
-      <a
-        href="/contacts/create"
-        class="btn rounded transition-all duration-300 hover:ring-2 hover:ring-offset-2 hover:ring-primary dark:hover:ring-offset-black"
-      >
-        @svg('heroicons:plus', { class: 'size-4' })
-        New Contact
-      </a>
-    </div>
-
-    <div class="card rounded-none p-0">
-      <table class="table">
-        <thead>
-          <tr class="divide-x divide-card">
-            <th class="bg-secondary-foreground text-secondary text-nowrap rounded-tl-xs pl-3">
-              Name
-            </th>
-            <th class="bg-secondary-foreground text-secondary text-nowrap">
-              Phone
-            </th>
-            <th class="bg-secondary-foreground text-secondary text-nowrap">
-              Email
-            </th>
-            <th class="bg-secondary-foreground text-secondary w-full">
-              Address
-            </th>
-            <th class="bg-secondary-foreground text-secondary rounded-tr-xs">
-            </th>
-          </tr>
-        </thead>
-
-        <tbody class="border-y">
-          @each ((contact, c) in contacts.data)
-            @include('pages/contacts/rows')
-          @end
-        </tbody>
-      </table>
-    </div>
-
-    @!pagination({ meta: contacts.meta })
+    @include('pages/contacts/_content')
   @endslot
 @end

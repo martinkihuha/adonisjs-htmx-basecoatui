@@ -4,9 +4,6 @@
   @endslot
   
   @slot('main')
-    <form action="/contacts/{{ contact.id }}?_method=PUT" method="post">
-      {{ csrfField() }}
-      @include('pages/contacts/form')
-    </form>
+    @include('pages/contacts/_edit')
   @endslot
 @end

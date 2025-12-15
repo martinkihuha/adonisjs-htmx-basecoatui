@@ -1,0 +1,9 @@
+@layout.app({ title })
+  @slot('meta')
+    <meta name="description" content="Dashboard overview" />
+  @endslot
+  
+  @slot('main')
+    @include('pages/home/_content')
+  @endslot
+@end

@@ -14,7 +14,7 @@
     class="h-9 w-full bg-card rounded-s rounded-e-none p-1 pl-9 placeholder:text-muted-foreground/50"
     hx-get="{{ searchUrl }}"
     hx-trigger="input delay:500ms changed, search"
-    hx-target="body"
+    hx-target="#content"
     hx-push-url="true"
     hx-indicator="#spinner"
   />

@@ -24,14 +24,33 @@ export default class ContactsController {
       )
       .paginate(page, limit)
 
-    return view.render('pages/contacts/index', { contacts: contacts.toJSON(), title: 'Contacts' })
+    // Check if this is an HTMX request
+    const isHtmxRequest = request.header('hx-request') === 'true'
+
+    // If HTMX request, return only the partial content
+    // if (isHtmxRequest) {
+    //   return view.render('pages/contacts/_content', {
+    //     contacts: contacts.toJSON(),
+    //     title: 'Contacts',
+    //   })
+    // }
+
+    return view.render(`pages/contacts/${isHtmxRequest ? '_content' : 'index'}`, {
+      contacts: contacts.toJSON(),
+      title: 'Contacts',
+    })
   }
 
   /**
    * Display form to create a new record
    */
-  async create({ view }: HttpContext) {
-    return view.render('pages/contacts/create', { title: 'New Contact' })
+  async create({ request, view }: HttpContext) {
+    // Check if this is an HTMX request
+    const isHtmxRequest = request.header('hx-request') === 'true'
+
+    return view.render(`pages/contacts/${isHtmxRequest ? '_create' : 'create'}`, {
+      title: 'New Contact',
+    })
   }
 
   /**
@@ -50,10 +69,13 @@ export default class ContactsController {
   /**
    * Show individual record
    */
-  async show({ params, view }: HttpContext) {
+  async show({ params, request, view }: HttpContext) {
     const contact = await Contact.findOrFail(params.id)
 
-    return view.render('pages/contacts/show', {
+    // Check if this is an HTMX request
+    const isHtmxRequest = request.header('hx-request') === 'true'
+
+    return view.render(`pages/contacts/${isHtmxRequest ? '_show' : 'show'}`, {
       contact,
       title: `${contact.firstName} ${contact.lastName}`,
     })
@@ -62,10 +84,13 @@ export default class ContactsController {
   /**
    * Edit individual record
    */
-  async edit({ params, view }: HttpContext) {
+  async edit({ request, params, view }: HttpContext) {
     const contact = await Contact.findOrFail(params.id)
 
-    return view.render('pages/contacts/edit', {
+    // Check if this is an HTMX request
+    const isHtmxRequest = request.header('hx-request') === 'true'
+
+    return view.render(`pages/contacts/${isHtmxRequest ? '_edit' : 'edit'}`, {
       contact,
       title: 'Edit Contact',
     })

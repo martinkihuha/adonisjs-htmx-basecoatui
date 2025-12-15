@@ -10,12 +10,15 @@ export default class NavItemsController {
     return response.json(results)
   }
 
-  async all({ view }: HttpContext) {
+  async all({ request, view }: HttpContext) {
     const results = await NavItem.query()
       .whereNull('deletedAt')
       .preload('subNavItems', (sni) => sni.whereNull('deletedAt'))
       .orderBy('list_order')
 
-    return view.render('components/sidebar', { results })
+    // Get the current URL from the HX-Current-URL header sent by HTMX
+    const currentUrl = request.header('hx-current-url') || request.url()
+
+    return view.render('components/sidebar', { results, currentUrl })
   }
 }
