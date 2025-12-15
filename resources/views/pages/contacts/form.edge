@@ -9,7 +9,7 @@
       id="firstName"
       type="text"
       placeholder="First Name"
-      autocomplete=""
+      autocomplete="given-name"
       value="{{ old('firstName') || contact?.firstName || '' }}"
       class="border rounded px-3 py-1 placeholder:text-muted-foreground/50"
     />
@@ -33,7 +33,7 @@
       id="lastName"
       type="text"
       placeholder="Last Name"
-      autocomplete=""
+      autocomplete="family-name"
       value="{{ old('lastName') || contact?.lastName || '' }}"
       class="border rounded px-3 py-1 placeholder:text-muted-foreground/50"
     />

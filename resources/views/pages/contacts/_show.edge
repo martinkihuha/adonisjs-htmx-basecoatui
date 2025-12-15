@@ -38,7 +38,7 @@
     class="btn-outline bg-secondary-foreground text-secondary rounded px-6 transition-all duration-300 hover:ring-2 hover:ring-offset-2 hover:ring-secondary-foreground dark:hover:ring-offset-secondary"
   >
     Back
-      </a>
+  </a>
 
   <a
     href="/contacts/{{ contact.id }}/edit"
@@ -47,16 +47,17 @@
     class="btn rounded px-8 transition-all duration-300 hover:ring-2 hover:ring-offset-2 hover:ring-primary dark:hover:ring-offset-black"
   >
     Edit
-      </a>
+  </a>
 
   <form action="/contacts/{{ contact.id }}?_method=DELETE" method="post">
     {{ csrfField() }}
-        <button
+    
+    <button
       type="submit"
       onclick="return confirm(`Are you sure you want to delete {{ contact.firstName }} {{ contact.lastName }}'s contact?`)"
       class="btn-destructive rounded px-6 transition-all duration-300 hover:ring-2 hover:ring-offset-2 hover:ring-destructive dark:hover:ring-offset-black"
     >
       Delete
-        </button>
+    </button>
   </form>
 </div>
